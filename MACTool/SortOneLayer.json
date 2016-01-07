@@ -1,0 +1,50 @@
+[
+  {
+    "id" : "1",
+    "name" : "视听休闲",
+    "sort" : "1",
+    "image" : "fl-ico0.png"
+  },
+  {
+    "id" : "2",
+    "name" : "新闻资讯",
+    "sort" : "2",
+    "image" : "fl-ico1.png"
+  },
+  {
+    "id" : "3",
+    "name" : "购物理财",
+    "sort" : "3",
+    "image" : "fl-ico2.png"
+  },
+  {
+    "id" : "4",
+    "name" : "旅游出行",
+    "sort" : "4",
+    "image" : "fl-ico4.png"
+  },
+  {
+    "id" : "5",
+    "name" : "母婴健康",
+    "sort" : "5",
+    "image" : "fl-ico6.png"
+  },
+  {
+    "id" : "6",
+    "name" : "生活教育",
+    "sort" : "6",
+    "image" : "fl-ico5.png"
+  },
+  {
+    "id" : "7",
+    "name" : "社区交友",
+    "sort" : "7",
+    "image" : "fl-ico3.png"
+  },
+  {
+    "id" : "8",
+    "name" : "政府地方",
+    "sort" : "8",
+    "image" : "fl-ico7.png"
+  }
+]
