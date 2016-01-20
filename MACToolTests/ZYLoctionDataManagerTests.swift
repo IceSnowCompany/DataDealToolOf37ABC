@@ -14,14 +14,14 @@ class ZYLoctionDataManagerTests: XCTestCase {
     let  testclass = ZYLoctionDataManager("/Users/jingwang/Desktop/52/手机版通用数据")
     
     func testParseDetailMethod() {
-        testclass.parseDetail("/Users/jingwang/Desktop/52/手机版通用数据/首页本地数据手机版.csv")
+//        testclass.parseDetail("/Users/jingwang/Desktop/52/手机版通用数据/首页本地数据手机版.csv")
     }
     
     func testParseSpecialKey() {
-        testclass.parseSpecialKey("/Users/jingwang/Desktop/52/省政府机构")
+//        testclass.parseSpecialKey("/Users/jingwang/Desktop/52/省政府机构")
     }
     
     func testParsePopSite() {
-        testclass.parsePopSite("/Users/jingwang/Desktop/52/手机版通用数据/本地名站手机版.csv")
+//        testclass.parsePopSite("/Users/jingwang/Desktop/52/手机版通用数据/本地名站手机版.csv")
     }
 }

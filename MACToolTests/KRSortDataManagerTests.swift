@@ -14,6 +14,6 @@ class KRSortDataManagerTests: XCTestCase {
     let testClass = KRSortDataManager("/Users/jingwang/Desktop/52/手机版通用数据")
     
     func testExp() {
-        testClass.parseData("/Users/jingwang/Desktop/52/手机版通用数据/首页分类排序.csv")
+//        testClass.parseData("/Users/jingwang/Desktop/52/手机版通用数据/首页分类排序.csv")
     }
 }

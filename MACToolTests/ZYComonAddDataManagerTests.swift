@@ -18,6 +18,6 @@ class ZYComonAddDataManagerTests: XCTestCase {
     }
     
     func testDealMainSortData() {
-        testClass.dealMainSort(("/Users/jingwang/Desktop/52/苹果数据/Untitled2.json","/Users/jingwang/Desktop/52/苹果数据/Untitled.json"))
+//        testClass.dealMainSort(("/Users/jingwang/Desktop/52/苹果数据/Untitled2.json","/Users/jingwang/Desktop/52/苹果数据/Untitled.json"))
     }
 }

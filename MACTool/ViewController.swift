@@ -49,17 +49,13 @@ class ViewController: NSViewController {
 extension ViewController {
     
     @IBAction func runningAction(sender: NSButton) {
-        let paths = NSSearchPathForDirectoriesInDomains(.ApplicationSupportDirectory, .UserDomainMask, true)
-        let bundleIdentifierStr = NSBundle.mainBundle().infoDictionary!["CFBundleIdentifier"] as! String
-        let suppPath = paths[0] + "/" + bundleIdentifierStr
-        print(suppPath)
-//        sender.enabled = false
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-//            self.startParseFileToDB()// 开始解析文件
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                sender.enabled = true
-//            })
-//        }
+        sender.enabled = false
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+            self.startParseFileToDB()// 开始解析文件
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                sender.enabled = true
+            })
+        }
     }
     
     @IBAction func inputFolderEditEndAction(sender: NSButton) {
