@@ -758,11 +758,11 @@
                                 <tabViewItems>
                                     <tabViewItem label="location" identifier="1" id="Ym9-ub-1Yw">
                                         <view key="view" id="Fpt-9Q-Ayi" customClass="KRLocationPathView" customModule="MACTool" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="33" width="690" height="211"/>
+                                            <rect key="frame" x="10" y="33" width="446" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pw6-6n-JGG">
-                                                    <rect key="frame" x="388" y="118" width="46" height="18"/>
+                                                    <rect key="frame" x="388" y="-93" width="46" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Gov" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gst-bU-ERz">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -772,7 +772,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKX-4E-q68">
-                                                    <rect key="frame" x="88" y="116" width="271" height="22"/>
+                                                    <rect key="frame" x="88" y="-95" width="271" height="22"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="文件夹路径" drawsBackground="YES" id="M3Q-LO-sGI">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -780,7 +780,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vrw-np-015">
-                                                    <rect key="frame" x="15" y="163" width="39" height="17"/>
+                                                    <rect key="frame" x="15" y="-48" width="39" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Detail" id="xxC-NI-qke">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -788,7 +788,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pEF-Qq-uwP">
-                                                    <rect key="frame" x="88" y="160" width="271" height="22"/>
+                                                    <rect key="frame" x="88" y="-51" width="271" height="22"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="文件路径" drawsBackground="YES" id="WZa-Ya-6nC">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -796,7 +796,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pvD-HE-1Fi">
-                                                    <rect key="frame" x="388" y="161" width="57" height="18"/>
+                                                    <rect key="frame" x="388" y="-50" width="57" height="18"/>
                                                     <buttonCell key="cell" type="check" title="Detail" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ANZ-n5-gB8">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -806,7 +806,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUC-yl-ntX">
-                                                    <rect key="frame" x="15" y="119" width="28" height="17"/>
+                                                    <rect key="frame" x="15" y="-92" width="28" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gov" id="Pkn-wW-XNx">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -814,7 +814,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yyQ-gX-YmM">
-                                                    <rect key="frame" x="388" y="69" width="69" height="18"/>
+                                                    <rect key="frame" x="388" y="-142" width="69" height="18"/>
                                                     <buttonCell key="cell" type="check" title="PopSite" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="71F-o1-dJQ">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -824,7 +824,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ggh-gF-yCQ">
-                                                    <rect key="frame" x="15" y="70" width="51" height="17"/>
+                                                    <rect key="frame" x="15" y="-141" width="51" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PopSite" id="fiQ-1W-4ZM">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -832,7 +832,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fc-LS-ysF">
-                                                    <rect key="frame" x="88" y="67" width="271" height="22"/>
+                                                    <rect key="frame" x="88" y="-144" width="271" height="22"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="文件路径" drawsBackground="YES" id="DWi-aB-Kl9">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -840,7 +840,7 @@
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x9E-CD-2O2">
-                                                    <rect key="frame" x="531" y="17" width="142" height="90"/>
+                                                    <rect key="frame" x="531" y="-194" width="142" height="90"/>
                                                     <buttonCell key="cell" type="bevel" title="设置完成" bezelStyle="rounded" imagePosition="overlaps" alignment="center" inset="2" id="kYO-WG-qYe">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                         <font key="font" size="23" name=".PingFangSC-Regular"/>
