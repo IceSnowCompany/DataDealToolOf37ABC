@@ -304,5 +304,11 @@
     "name" : "国外",
     "image" : "p_guowai.png",
     "sort" : "53"
-  }
+ },
+ {
+ "id" : "270053",
+ "name" : "景点",
+ "image" : "p_jingdian.png",
+ "sort" : "54"
+ }
 ]
