@@ -7,13 +7,30 @@
 //
 
 import Foundation
+/**
+ 正则库
+ */
+struct KRRegularLibrary {
+    private var lib: [String: NSRegularExpression] = [:]
+    
+    subscript(mathStr: String) -> NSRegularExpression {
+        mutating get {
+            if lib[mathStr] == nil {
+                let regular = try! NSRegularExpression(pattern: mathStr, options: [.CaseInsensitive])
+                lib[mathStr] = regular
+            }
+            return lib[mathStr]!
+        }
+    }
+}
 
 class KRTextManager: ConstantLogClass {
     
     lazy private var newLineCharacterSet = NSCharacterSet(charactersInString: "\n")
     lazy private var commaCharacterSet = NSCharacterSet(charactersInString: ",")
     lazy private var commaSpanceCharacterSet = NSCharacterSet(charactersInString: ",\r ")
-    
+    /// 正则表达库
+    private var regularLibrary: KRRegularLibrary = KRRegularLibrary()
     /// 缓存正则表达式
     //------------------------------------------------------------------------------------
     private var tempRegularExPression: (column: Int, regularExp: NSRegularExpression)?
@@ -249,6 +266,46 @@ class KRTextManager: ConstantLogClass {
             options: NSMatchingOptions(),
             range: NSRange(location: 0, length: NSString(string: sText).length))
         return matchNum != 0
+    }
+    
+    /**
+     正则匹配文本是否包含
+     
+     - parameter text:     待检查文本
+     - parameter matchStr: 正则表达式
+     
+     - returns: 是否文本
+     */
+    func hasValue(text: String, matchStr: String) -> Bool {
+        let textNS = NSString(string: matchStr)
+        let regular = regularLibrary[matchStr]
+        let matchNum = regular.numberOfMatchesInString(text, options: NSMatchingOptions(), range: NSRange(location: 0, length: textNS.length))
+        return matchNum > 0
+    }
+    
+    /**
+    根据正则表达式解析文本
+    
+    - parameter text:     待解析文本
+    - parameter matchStr: 正则表达式
+    
+    - returns: 解析结果
+    */
+    func parseText(text: String, matchStr: String) -> [String] {
+        var result: [String] = []
+        let textNS = NSString(string: text)
+        let regular = regularLibrary[matchStr]
+        regular.enumerateMatchesInString(text,
+            options: NSMatchingOptions(),
+            range: NSRange(location: 0, length: textNS.length)) {
+                (textCheckingResult, matchingFlag, stop) -> Void in
+                
+                if textCheckingResult == nil { return }
+                let range = textCheckingResult!.range
+                let parseEleText = textNS.substringWithRange(range)
+                result.append(parseEleText)
+        }
+        return result
     }
 }
 // MARK: - FileName

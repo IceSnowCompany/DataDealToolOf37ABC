@@ -13,7 +13,7 @@
 		2D06ECD61C1ABA4F0095D867 /* SortOneLayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D06ECD51C1ABA4F0095D867 /* SortOneLayer.json */; };
 		2D06ECD81C1AC41C0095D867 /* CA_MainSort.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D06ECD71C1AC41C0095D867 /* CA_MainSort.json */; };
 		2D0ABD8C1BCCE9B0009723F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ABD8B1BCCE9B0009723F4 /* AppDelegate.swift */; };
-		2D0ABD8E1BCCE9B0009723F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ABD8D1BCCE9B0009723F4 /* ViewController.swift */; };
+		2D0ABD8E1BCCE9B0009723F4 /* SourceDataManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ABD8D1BCCE9B0009723F4 /* SourceDataManagerViewController.swift */; };
 		2D0ABD911BCCE9B0009723F4 /* MACTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D0ABD8F1BCCE9B0009723F4 /* MACTool.xcdatamodeld */; };
 		2D0ABD931BCCE9B0009723F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ABD921BCCE9B0009723F4 /* Assets.xcassets */; };
 		2D0ABD961BCCE9B0009723F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D0ABD941BCCE9B0009723F4 /* Main.storyboard */; };
@@ -72,6 +72,7 @@
 		2D0D7E091C31337D00E10CA3 /* ParseFilePathManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0D7E081C31337D00E10CA3 /* ParseFilePathManager.swift */; };
 		2D0D7E0B1C31409500E10CA3 /* KRSelectTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0D7E0A1C31409500E10CA3 /* KRSelectTabView.swift */; };
 		2D14E3E21BD485F800D83C39 /* FilesNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D14E3E11BD485F800D83C39 /* FilesNameManager.swift */; };
+		2D169A661C562C2300652393 /* CommandAddCleard.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D169A651C562C2300652393 /* CommandAddCleard.plist */; };
 		2D29E2561C1E5A9B00B62A5C /* ZYHeaderDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29E2551C1E5A9B00B62A5C /* ZYHeaderDataManager.swift */; };
 		2D29E2591C1E64E800B62A5C /* ZYHeaderDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D29E2581C1E64E800B62A5C /* ZYHeaderDataManagerTests.swift */; };
 		2D2B5C061C151B8E00C45334 /* ZYComonAddDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2B5C051C151B8E00C45334 /* ZYComonAddDataManager.swift */; };
@@ -99,6 +100,8 @@
 		2D45FCD81C2BD15F002A84C6 /* KRClassificationrSourceToDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45FCD71C2BD15F002A84C6 /* KRClassificationrSourceToDB.swift */; };
 		2D45FCDA1C2BD18E002A84C6 /* KRComonAddSourceToDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45FCD91C2BD18E002A84C6 /* KRComonAddSourceToDB.swift */; };
 		2D45FCDC1C2BD1BD002A84C6 /* KRSortDataSourceToDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D45FCDB1C2BD1BD002A84C6 /* KRSortDataSourceToDB.swift */; };
+		2D4853101C744F0E00E02D2A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48530F1C744F0E00E02D2A /* ViewController.swift */; };
+		2D4853121C7457A200E02D2A /* FTPDataManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4853111C7457A200E02D2A /* FTPDataManagerViewController.swift */; };
 		2D595B531C32610C005960DC /* KRDetailClassPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D595B521C32610C005960DC /* KRDetailClassPathsView.swift */; };
 		2D595B551C326129005960DC /* KRHeaderPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D595B541C326129005960DC /* KRHeaderPathsView.swift */; };
 		2D595B571C326149005960DC /* KRAggreSearchPathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D595B561C326149005960DC /* KRAggreSearchPathsView.swift */; };
@@ -139,7 +142,7 @@
 		2D06ECD71C1AC41C0095D867 /* CA_MainSort.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CA_MainSort.json; sourceTree = "<group>"; };
 		2D0ABD881BCCE9B0009723F4 /* MACTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MACTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0ABD8B1BCCE9B0009723F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		2D0ABD8D1BCCE9B0009723F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2D0ABD8D1BCCE9B0009723F4 /* SourceDataManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceDataManagerViewController.swift; sourceTree = "<group>"; };
 		2D0ABD901BCCE9B0009723F4 /* MACTool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MACTool.xcdatamodel; sourceTree = "<group>"; };
 		2D0ABD921BCCE9B0009723F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D0ABD951BCCE9B0009723F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -199,6 +202,7 @@
 		2D0D7E081C31337D00E10CA3 /* ParseFilePathManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseFilePathManager.swift; sourceTree = "<group>"; };
 		2D0D7E0A1C31409500E10CA3 /* KRSelectTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRSelectTabView.swift; sourceTree = "<group>"; };
 		2D14E3E11BD485F800D83C39 /* FilesNameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesNameManager.swift; sourceTree = "<group>"; };
+		2D169A651C562C2300652393 /* CommandAddCleard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CommandAddCleard.plist; sourceTree = "<group>"; };
 		2D29E2551C1E5A9B00B62A5C /* ZYHeaderDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZYHeaderDataManager.swift; sourceTree = "<group>"; };
 		2D29E2581C1E64E800B62A5C /* ZYHeaderDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZYHeaderDataManagerTests.swift; sourceTree = "<group>"; };
 		2D2B5C051C151B8E00C45334 /* ZYComonAddDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZYComonAddDataManager.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 		2D45FCD71C2BD15F002A84C6 /* KRClassificationrSourceToDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = KRClassificationrSourceToDB.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2D45FCD91C2BD18E002A84C6 /* KRComonAddSourceToDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = KRComonAddSourceToDB.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2D45FCDB1C2BD1BD002A84C6 /* KRSortDataSourceToDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRSortDataSourceToDB.swift; sourceTree = "<group>"; };
+		2D48530F1C744F0E00E02D2A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2D4853111C7457A200E02D2A /* FTPDataManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FTPDataManagerViewController.swift; sourceTree = "<group>"; };
 		2D595B521C32610C005960DC /* KRDetailClassPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRDetailClassPathsView.swift; sourceTree = "<group>"; };
 		2D595B541C326129005960DC /* KRHeaderPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRHeaderPathsView.swift; sourceTree = "<group>"; };
 		2D595B561C326149005960DC /* KRAggreSearchPathsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KRAggreSearchPathsView.swift; sourceTree = "<group>"; };
@@ -306,7 +312,9 @@
 			isa = PBXGroup;
 			children = (
 				2D0ABD8B1BCCE9B0009723F4 /* AppDelegate.swift */,
-				2D0ABD8D1BCCE9B0009723F4 /* ViewController.swift */,
+				2D48530F1C744F0E00E02D2A /* ViewController.swift */,
+				2D4853111C7457A200E02D2A /* FTPDataManagerViewController.swift */,
+				2D0ABD8D1BCCE9B0009723F4 /* SourceDataManagerViewController.swift */,
 				2D2E07531C1E9BE000D0A457 /* KRFMDBClass.swift */,
 				2D880A441C23D62E00873E15 /* 37abc DataManager */,
 				2D2E07381C1E993200D0A457 /* fmdb */,
@@ -420,6 +428,7 @@
 			children = (
 				2D2B5C051C151B8E00C45334 /* ZYComonAddDataManager.swift */,
 				2D0147B11BCF433B00E7B177 /* CommandAddManger.swift */,
+				2D169A651C562C2300652393 /* CommandAddCleard.plist */,
 				2D06ECD71C1AC41C0095D867 /* CA_MainSort.json */,
 			);
 			name = ZYComonAdd;
@@ -554,12 +563,12 @@
 		2D880A441C23D62E00873E15 /* 37abc DataManager */ = {
 			isa = PBXGroup;
 			children = (
+				2D595B5E1C326D92005960DC /* KRRunFunctionManger.swift */,
 				2D0D7E0A1C31409500E10CA3 /* KRSelectTabView.swift */,
 				2DF3F8221C324302001B7C34 /* ManagerView */,
-				2D0D7E081C31337D00E10CA3 /* ParseFilePathManager.swift */,
-				2D595B5E1C326D92005960DC /* KRRunFunctionManger.swift */,
-				2D45FCD01C2B9625002A84C6 /* ToDB */,
 				2D0D7E071C312FE000E10CA3 /* old manager */,
+				2D0D7E081C31337D00E10CA3 /* ParseFilePathManager.swift */,
+				2D45FCD01C2B9625002A84C6 /* ToDB */,
 			);
 			name = "37abc DataManager";
 			sourceTree = "<group>";
@@ -720,6 +729,7 @@
 				2D0ABDE81BCCE9C3009723F4 /* p_jiudian.png in Resources */,
 				2D0ABDE01BCCE9C3009723F4 /* p_gongyi.png in Resources */,
 				2D0ABDDB1BCCE9C3009723F4 /* p_falv.png in Resources */,
+				2D169A661C562C2300652393 /* CommandAddCleard.plist in Resources */,
 				2D06ECD61C1ABA4F0095D867 /* SortOneLayer.json in Resources */,
 				2D0ABDEF1BCCE9C3009723F4 /* p_muying.png in Resources */,
 				2D0ABDE51BCCE9C3009723F4 /* p_jiaoyou.png in Resources */,
@@ -778,6 +788,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D2FA5321C157B1D005BD19C /* ZYClassificationDataManager.swift in Sources */,
+				2D4853101C744F0E00E02D2A /* ViewController.swift in Sources */,
 				2D595B5D1C3261C4005960DC /* KRSortDataPathsView.swift in Sources */,
 				2D595B5F1C326D92005960DC /* KRRunFunctionManger.swift in Sources */,
 				2D29E2561C1E5A9B00B62A5C /* ZYHeaderDataManager.swift in Sources */,
@@ -788,9 +799,10 @@
 				2D0ABD911BCCE9B0009723F4 /* MACTool.xcdatamodeld in Sources */,
 				2D595B571C326149005960DC /* KRAggreSearchPathsView.swift in Sources */,
 				2D2E07541C1E9BE000D0A457 /* KRFMDBClass.swift in Sources */,
-				2D0ABD8E1BCCE9B0009723F4 /* ViewController.swift in Sources */,
+				2D0ABD8E1BCCE9B0009723F4 /* SourceDataManagerViewController.swift in Sources */,
 				2D84224C1C16712500C8B1F6 /* ZYAggreSearDataManager.swift in Sources */,
 				2DF0FCE01C2A46C900A92326 /* FMDatabaseVariadic.swift in Sources */,
+				2D4853121C7457A200E02D2A /* FTPDataManagerViewController.swift in Sources */,
 				2D595B5B1C3261B1005960DC /* KRCommondAddPathsView.swift in Sources */,
 				2D595B551C326129005960DC /* KRHeaderPathsView.swift in Sources */,
 				2DF3F8211C3242FE001B7C34 /* KRLocationPathView.swift in Sources */,

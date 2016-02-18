@@ -7,6 +7,8 @@
 //
 
 import Foundation
+/// 多类过滤组
+let moreClassIgnoreClassData: Set<String> = ["彩票"]
 
 /// ZYDetailClass.db
 /// 51个分类数据管理
@@ -16,10 +18,18 @@ class MoreClassDataManager: KRDataManager {
     /// detail Head
     lazy var detailHead = ["class", "head", "title", "url"]
     
+    
+    /// 根目录过滤文件组
+    lazy var rootIgnoreFilesName: Set<String> = ["55.手机网页版聚搜里的数据.csv"]
+    /// 某类过滤文件组
+    lazy var ignoreClassData: Set<String> = moreClassIgnoreClassData
+    
     /// 文本管理
     lazy var textManager: KRTextManager = KRTextManager()
     /// 文件管理
     lazy var fileManager: KRFileWriteReadManager = KRFileWriteReadManager()
+    /// 文件名管理
+    private lazy var filesNameEngine = FilesNameManager()
     
     init() {
         super.init("/Users/jingwang/Desktop/52/53/setting")
@@ -39,7 +49,6 @@ class MoreClassDataManager: KRDataManager {
         let keyToImageHead = mainSortHead.reduce("") { (result :String, item:String) -> String in
             return result + (result.isEmpty ? "" : ",") + item
         }
-        
         
         // 获取键图组
         guard let keyToImageSource = dealKeyToImage() else {
@@ -96,6 +105,7 @@ extension MoreClassDataManager {
             let itemPro = 1 / Double(parseFolder.count)
             let dealKey = item[filesNameEngine.dealedKey]!
             var simpeFileLine = 0
+            
             // ----------------------------- dealData
             parseFileText(path+"/"+item[filesNameEngine.sourchPath]!, fieldCount: detailHead.count-1, splitText: { (simpleData, progress) -> () in
                 simpeFileLine = progress.total
@@ -107,6 +117,89 @@ extension MoreClassDataManager {
         }
         inputLogText("总共 \(totalLine) 条数据")
         return true
+    }
+    
+    /**
+    解析文件夹<Use>
+    
+    - parameter base:      基本文件夹
+    - parameter special:   特殊文件文件夹
+    - parameter splitText: 分割动作
+    */
+    func parseFoldersToDB(base: String, special: String, splitText: EnumerateSplitTextAndProValueFunc? = nil) {
+        
+        let rootFolderR = parseRootFolder(base) // 根目录解析
+        let specialFolderR = parseSpecialFolder(special)// 特殊目录文件解析
+        
+        // 遍历
+        let specialKeys = specialFolderR.keys
+        var indexDeal = 0//  处理文件位置
+        let itemPro = 1 / Double(rootFolderR.count)
+        var allFilesDataLine = 0
+        // 遍历文件组
+        for (key, value) in rootFolderR {
+            // 记录进度
+            let dealedFilesPro = Double(indexDeal) * itemPro// 已处理文件进度
+            
+            // 查看是否需要过滤
+            if ignoreClassData.contains(key) {
+                inputLogText("过滤大类数据 > " + key)
+            } else {
+                let tempUsingPath = specialKeys.contains(key) ? specialFolderR[key]! : value//  调用特殊文件
+                
+                // 解析文件
+                let fileDataLine =
+                parseFileText(key, filePath: tempUsingPath, splitText: { (simpleData, progress) -> () in
+                    let pro = dealedFilesPro + itemPro * progress
+                    splitText?(simpleData: simpleData, progress: pro)
+                })
+                allFilesDataLine += fileDataLine// 记录数据总条数
+            }
+            // 记录进度
+            indexDeal++// 处理文件位置
+        }
+        inputLogText("总共 \(allFilesDataLine) 条数据")
+    }
+    
+    /**
+     解析单个文件文本
+     
+     - parameter key:       处理文件Key
+     - parameter filePath:  文件路径
+     - parameter splitText: 分解文本操作
+     
+     - returns: 处理数据条数
+     */
+    func parseFileText(key: String, filePath: String, splitText: EnumerateSplitTextAndProValueFunc) -> Int {
+        var simpeFileLine = 0// 记录数据条数
+        parseFileText(filePath, fieldCount: detailHead.count-1, splitText: { (simpleData, progress) -> () in
+            simpeFileLine++// 记录数据条数
+            let newSimpleData = "'\(key)', " + simpleData// 添加头数据
+            let pro = Double(progress.index) / Double(progress.total)
+            splitText(simpleData: newSimpleData, progress: pro)
+        })
+        return simpeFileLine
+    }
+    
+    /// 根目录解析
+    func parseRootFolder(folder: String) -> [String: String] {
+        // 解析文件夹
+        return filesNameEngine.parseFolderBase(folder, rootDirIgnore: rootIgnoreFilesName)
+    }
+    
+    /// 特殊路径解析
+    func parseSpecialFolder(folder: String) -> [String: String] {
+        let result = filesNameEngine.parseAllRootFileInFolder(folder)// 获取根目录下文件名
+        // 筛选
+        var usingKeyToPath: [String: String] = [:]//筛选结果
+        let matchStr = "(?<=-手机-苹果版)([^.]+)(?=.csv)"//特殊文件匹配
+        for item in result! {
+            let parseResult = textEngine.parseText(item, matchStr: matchStr)
+            if parseResult.count > 0 {
+                usingKeyToPath[parseResult[0]] = folder + "/" + item
+            }
+        }
+        return usingKeyToPath
     }
     
     /**

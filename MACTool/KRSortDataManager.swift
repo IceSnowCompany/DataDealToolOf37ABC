@@ -29,7 +29,13 @@ class KRSortDataManager: KRDataManager {
     }
     
     var replaceTitle = ["社区游戏": "社区交友"]
-    var clearContents: Set<String> = ["游戏", "应用"]
+    var clearContents: Set<String> = {
+        var temp: Set<String> = ["游戏", "应用"]
+        for item in moreClassIgnoreClassData {
+            temp.insert(item)
+        }
+        return temp        
+    }()
     
     /// Sort 当条数据解析
     func parseSimpleData(textData: String, usingEvery: (fristEle: String, sqlValues: [String]) -> ()) {
@@ -160,6 +166,8 @@ class KRSortDataManager: KRDataManager {
                 // 清洁
                 if !self.isClearContent(secondE) {
                     aggreTop.append(secondE)
+                } else {
+                    self.inputLogText("分类推荐 -> 过滤\(secondE)")
                 }
             case "8个大项顺序":
                 let useTitle = self.getAppleToTitle(secondE)
@@ -168,6 +176,8 @@ class KRSortDataManager: KRDataManager {
                 isENd = true// 解析本组完即停止
                 if !self.isClearContent(secondE) {
                     commandAddSort.append(secondE)
+                } else {
+                    self.inputLogText("首页添加里的顺序 -> 过滤\(secondE)")
                 }
             default:
                 if isENd { return }// 解析完最后一组就不解析
@@ -175,6 +185,8 @@ class KRSortDataManager: KRDataManager {
                 // 清洁
                 if !self.isClearContent(secondE) {
                     aggreClassDSort.append([fristE, secondE])
+                } else {
+                    self.inputLogText("分类详细排序 -> 过滤\(secondE)")
                 }
             }
         }

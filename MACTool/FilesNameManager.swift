@@ -13,6 +13,8 @@ class FilesNameManager {
     
     lazy private var fm = NSFileManager.defaultManager()
     lazy private var dc = DirectoryColloction()
+    /// 遗忘文件名
+    lazy private var ignoreFilesName: Set<String> = [".DS_Store"]
     /// 源文件
     let sourchPath = "sourcePath"
     /// 处理的关键字
@@ -74,10 +76,106 @@ class FilesNameManager {
     }
     
 }
+// MARK: - V1.2
+extension FilesNameManager {
+    /// 基本文件夹解析
+    func parseFolderBase(folder: String, rootDirIgnore: Set<String>) -> [String: String] {
+        let filesName = parseAllRootFileInFolder(folder)// 解析文件夹 获取根目录所有文件
+        let filesNameOfClear = clearTexts(filesName!, ignoreTexts: rootDirIgnore)// 清洁根目录过滤文件
+        // 解析文件名组
+        var keyToPath: [String: String] = [:]
+        let regular = regularExpression(maxtchStrOf53ClassFileName)!// 解析正则
+        for item in filesNameOfClear {
+            let dealed = parseFiles(item, regularEcpression: regular)
+            let key = dealed[0]
+            keyToPath[key] = folder + "/" + item
+        }
+        return keyToPath
+    }
+    /**
+     根目录下的所有文件(不包含文件夹, 隐藏文件)
+     
+     - parameter folder: 文件夹路径
+     
+     - returns: 解析结果
+     */
+    func parseAllRootFileInFolder(folder: String) -> [String]? {
+        
+        let url = NSURL(fileURLWithPath: folder, isDirectory: true)// 本地URL
+        let dirEnumerator = fm.enumeratorAtURL(url,
+            includingPropertiesForKeys: [NSURLNameKey, NSURLIsDirectoryKey],
+            options: [.SkipsSubdirectoryDescendants, .SkipsHiddenFiles],
+            errorHandler: nil)// 获取指定目录的枚举对象
+        
+        var allFilesName: [String] = []// 所有文件名组
+        // 遍历所有对象
+        for tempURL in dirEnumerator! {
+            var isDir: AnyObject?// 是否为目录
+            try! (tempURL as! NSURL).getResourceValue(&isDir, forKey: NSURLIsDirectoryKey)
+            if !(isDir as! NSNumber).boolValue {
+                var fileName: AnyObject?// 文件名
+                try! (tempURL as! NSURL).getResourceValue(&fileName, forKey: NSURLNameKey)
+                allFilesName.append(fileName as! String)
+            }
+        }
+        return allFilesName
+    }
+}
+
+
 /// 53个分类文件名中获取Key
 let maxtchStrOf53ClassFileName = "((?<=_)|(?<=-)|^)([^-_\n]+)(?=\\.csv)"
 
 private extension FilesNameManager {
+    /// 正则解析文件名
+    func parseFileName(fileName: String, regular: NSRegularExpression) {
+        let dealed = parseFiles(fileName, regularEcpression: regular)
+        print(dealed)
+    }
+    
+    
+    
+    /**
+     清除Ingore文件
+     
+     - parameter filesName: 文件名组
+     
+     - returns: 过滤后文件名组
+     */
+    func clearIngoreFileName(filesName: [String]) -> [String] {
+        return clearFilesName(filesName, ignoreFiles: ignoreFilesName)
+    }
+    
+    /**
+     清理文件名
+     
+     - parameter sourceFiles: 源文件名组
+     - parameter ignoreFiles: 过滤文件名组
+     
+     - returns: 过滤结果
+     */
+    func clearFilesName(sourceFiles: [String], ignoreFiles: Set<String>) -> [String] {
+        return clearTexts(sourceFiles, ignoreTexts: ignoreFiles)
+    }
+    
+    /**
+     清理文本组
+     
+     - parameter texts:       文本组
+     - parameter ignoreTexts: 过滤文本组
+     
+     - returns: 处理结果
+     */
+    func clearTexts(texts: [String], ignoreTexts: Set<String>) -> [String] {
+        var result: [String] = []
+        for item in texts {
+            if !ignoreTexts.contains(item) {
+                result.append(item)
+            }
+        }
+        return result
+    }
+    
     /**
      解析文件名(支持清空ignore文件)
      
@@ -112,7 +210,7 @@ private extension FilesNameManager {
      - returns: 正则表达式
      */
     func regularExpression(matchStr: String) -> NSRegularExpression? {
-        return try? NSRegularExpression(pattern: maxtchStrOf53ClassFileName, options: [.CaseInsensitive, .DotMatchesLineSeparators])
+        return try? NSRegularExpression(pattern: matchStr, options: [.CaseInsensitive, .DotMatchesLineSeparators])
     }
     
     /**

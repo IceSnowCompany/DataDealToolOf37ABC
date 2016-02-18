@@ -22,6 +22,8 @@ class ZYAggreSearDataManager: KRDataManager {
     lazy private var headsFristLayer = ["name", "hasSec"]
     /// Heads - FristLayer Sourch
     lazy private var headsFristLayerS = ["top_name", "cate_name"]
+    /// 第一个标签过滤
+    lazy var ignoreFristTitle: Set<String> = moreClassIgnoreClassData
     
     /**
      处理Detail文件
@@ -76,8 +78,9 @@ extension ZYAggreSearDataManager {
      - parameter splitText: 分割操作
      */
     func dealDetailOfSourceData(filePath: String, splitText: EnumerateSplitTextAndProValueFunc) {
+        
         var totalLineData = 0
-        parseFileText(filePath, fieldCount: headsDetail.count, isClearSpanceLine: true) { (simpleData, progress) -> () in
+        parseFileText(filePath, fieldCount: headsDetail.count, isClearSpanceLine: true, fristTitleIgnore: ignoreFristTitle) { (simpleData, progress) -> () in
             totalLineData = progress.total
             // 过滤多余信息
             let fristPar = self.textEngine.parseCellFristcolumn(simpleData)

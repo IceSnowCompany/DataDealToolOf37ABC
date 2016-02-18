@@ -39,7 +39,12 @@ class KRDetailClassSourceToDB: KRSourceToDB {
     private var detailFolderPath: String {
         return pathManager.detailClassPaths.detail
     }
-    
+    /// Detail 特殊文件夹
+    private var detailSpecialFolderPath: String {
+        return pathManager.detailClassPaths.detailSpecial
+    }
+    /// 进度信息
+    private var progressInfo = (total: 0, index: 0)
     
     init() {
         super.init(dnName: "ZYDetailClass")
@@ -57,7 +62,11 @@ class KRDetailClassSourceToDB: KRSourceToDB {
             return
         }
         
+        progressInfo = (1, 0)// 重置进度信息
         dealDetail()
+        
+        
+        
         
         if !dbManager.closeDB() {
             inputLogText("关闭数据库失败")
@@ -74,6 +83,7 @@ class KRDetailClassSourceToDB: KRSourceToDB {
             return
         }
         
+        progressInfo = (dealTypes.count, 0)// 重置进度信息
         /**
         执行任务
         */
@@ -107,13 +117,22 @@ private extension KRDetailClassSourceToDB {
             fieldAndPros: detailFieldAndPros,
             fields: detailFields)
         
+        // 进度信息
+        let itemPro = 1 / Double(progressInfo.total)// 单元进度
+        let proED = Double(progressInfo.index) / Double(progressInfo.total)// 已处理进度
         // 重建表
         if !reCreateTable(toDBInfo.tableName, fieldAndPros: toDBInfo.fieldAndPros) {
             return false
         }
-        testclass.parseFileOfFolderToDB(toDBInfo.filePath) { (simpleData, progress) -> () in
-            self.dealSimpleInMoreLineData(toDBInfo, simpleData: simpleData, progress: progress)
+        testclass.parseFoldersToDB(detailFolderPath,
+            special: detailSpecialFolderPath) { (simpleData, progress) -> () in
+                let pro = proED + itemPro * progress// 于本类中进度
+                self.dealSimpleInMoreLineData(toDBInfo, simpleData: simpleData, progress: pro)
         }
+        
+        // 进度信息更新
+        progressInfo.index++
+        
         inputLogText(__FUNCTION__ + " end")
         return true
     }
@@ -131,10 +150,18 @@ private extension KRDetailClassSourceToDB {
             return false
         }
         
+        // 进度信息
+        let itemPro = 1 / Double(progressInfo.total)// 单元进度
+        let proED = Double(progressInfo.index) / Double(progressInfo.total)// 已处理进度
+        
         //  处理数据
         testclass.dealMainSortToDB(sourceData) { (simpleData, progress) -> () in
-            self.dealSimpleInMoreLineData(toDBInfo, simpleData: simpleData, progress: progress)
+            let pro = proED + itemPro * progress// 于本类中进度
+            self.dealSimpleInMoreLineData(toDBInfo, simpleData: simpleData, progress: pro)
         }
+        
+        // 进度信息更新
+        progressInfo.index++
         
         inputLogText(__FUNCTION__ + " end")
         return true

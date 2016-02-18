@@ -63,8 +63,13 @@ extension KRDataManager {
         }
     }
     
-    /// 解析文件文本 (to DB)<+清空空白数据><V2.0>
-    func parseFileText(filePath: String, fieldCount: Int, isClearSpanceLine: Bool = false, splitText: (simpleData: String, progress: (index: Int, total: Int)) -> ()) {
+    /// 解析文件文本 (to DB)<+清空空白数据+第一个标签过滤><V2.0>
+    func parseFileText(filePath: String,
+        fieldCount: Int,
+        isClearSpanceLine: Bool = false,
+        fristTitleIgnore: Set<String> = [],
+        splitText: (simpleData: String, progress: (index: Int, total: Int)) -> ()) {
+            
         let sText = try! fileEngine.readStringFromFile(filePath)
         textEngine.splitTextInRelgularAndPro(sText, column: fieldCount) { (text, progress) -> () in
             var isNeed = true
@@ -82,6 +87,11 @@ extension KRDataManager {
                 // 清洁(第一个参数空白)
                 if isClearSpanceLine && isFristEle {
                     if clearSESpnse.isEmpty {
+                        isNeed = false
+                        return
+                    }
+                    // 过滤判定
+                    if fristTitleIgnore.contains(clearSESpnse) {
                         isNeed = false
                         return
                     }
@@ -107,28 +117,36 @@ extension KRDataManager {
     }
     
     /// 解析文件文本 (to DB)<+过滤数据><V2.0>
-    func parseFileText(filePath: String, fieldCount: Int, clearTitles: Set<String>, splitText: (simpleData: String, progress: (index: Int, total: Int)) -> ()) {
+    func parseFileText(filePath: String, fieldCount: Int, clearTitles: Set<String>, clearDetail: Set<String> = [], splitText: (simpleData: String, progress: (index: Int, total: Int)) -> ()) {
         let sText = try! fileEngine.readStringFromFile(filePath)
         textEngine.splitTextInRelgularAndPro(sText, column: fieldCount) { (text, progress) -> () in
             var isNeed = true
-            var isFristEle = true
             var sqlValues: String = ""
+            var index = 0// 索引位置
             // 分割元素
             self.textEngine.splitCsvTextInSimpleLine(text, usingEvery: { (text) -> () in
-                let clearSESpnse = text.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))// 处理前后空格
-                
+                index++
                 // 不需要的轮空
                 if !isNeed {
                     return
                 }
                 
+                // 开始处理
+                let clearSESpnse = text.stringByTrimmingCharactersInSet(NSCharacterSet(charactersInString: " "))// 处理前后空格
+                
                 // 清洁(第一个参数空白)
-                if isFristEle {
+                if index == 1 && clearTitles.count != 0 {
                     if clearTitles.contains(clearSESpnse) {
                         isNeed = false
                         return
                     }
-                    isFristEle = false
+                }
+                
+                // 第二个参数过滤
+                if index == 2 && clearDetail.count != 0 {
+                    if clearDetail.contains(clearSESpnse) {
+                        isNeed = false
+                    }
                 }
                 
                 // 是否有单引号
@@ -156,6 +174,7 @@ extension KRDataManager {
      - parameter enuParseText: 枚举解析的数据
      */
     func paresDataSet(sData: [Array<String>], enuParseText: (simpleData: String, progress: (index: Int, total: Int)) -> ()) {
+        
         let totalCount = sData.count
         for (index, item) in sData.enumerate() {
             var dealItem = item.reduce("", combine: { (sqlValues, itemStr) -> String in

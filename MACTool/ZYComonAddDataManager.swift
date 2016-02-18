@@ -14,8 +14,20 @@ class ZYComonAddDataManager: KRDataManager {
     // Pro
     /// 详细页头部
     private var DetailHead = ["title", "name", "image", "url"]
-    private var clearKeys: Set<String> = ["游戏", "应用"]
-    
+    private var clearKeys: Set<String> = {
+        var temp: Set<String> = ["游戏", "应用"]
+        for item in moreClassIgnoreClassData {
+            temp.insert(item)
+        }
+        return temp
+    }()
+    /// 详细过滤
+    lazy private var clearDetail: Set<String> = {
+        
+        let locaPath = NSBundle.mainBundle().pathForResource("CommandAddCleard", ofType: "plist")!
+        let clearArr = NSArray(contentsOfFile: locaPath) as! [String]
+        return Set(clearArr)
+    }()
     
     /**
      处理Detail数据
@@ -57,10 +69,13 @@ extension ZYComonAddDataManager {
      */
     func dealDetailDataToDB(filePath: String, splitText: EnumerateSplitTextAndProValueFunc) {
         var totalLineData = 0
-        parseFileText(filePath, fieldCount: DetailHead.count, clearTitles: clearKeys) { (simpleData, progress) -> () in
-            totalLineData = progress.total// 记录总数据数
-            let currentPro =  (Double(progress.index)/Double(progress.total))// 进度条
-            splitText(simpleData: simpleData, progress: currentPro)
+        parseFileText(filePath,
+            fieldCount: DetailHead.count,
+            clearTitles: clearKeys,
+            clearDetail: clearDetail) { (simpleData, progress) -> () in
+                totalLineData = progress.total// 记录总数据数
+                let currentPro =  (Double(progress.index)/Double(progress.total))// 进度条
+                splitText(simpleData: simpleData, progress: currentPro)
         }
         inputLogText("数据总量：\(totalLineData)")
     }

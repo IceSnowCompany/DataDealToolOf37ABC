@@ -15,4 +15,10 @@ class MoreClassDataManagerTests: XCTestCase {
     func testParseFileOfFolder() {
         testClass.parseFileOfFolder("/Users/jingwang/Desktop/52/53")
     }
+    
+    func testParseFoldersToDB() {
+        testClass.parseFoldersToDB("/Users/jingwang/Documents/SVN/37abc Data/手机版", special: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据") { (simpleData, progress) -> () in
+            
+        }
+    }
 }

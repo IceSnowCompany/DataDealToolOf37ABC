@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -654,12 +654,13 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="761" height="402"/>
+                        <rect key="contentRect" x="196" y="240" width="450" height="280"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="761" height="402"/>
+                        <value key="minSize" type="size" width="450" height="280"/>
+                        <value key="maxSize" type="size" width="450" height="280"/>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="YVK-Mr-vOj" kind="relationship" relationship="window.shadowedContentViewController" id="Oga-8c-QFz"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -667,9 +668,91 @@
             <point key="canvasLocation" x="-89.5" y="31"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="F7v-pB-LMX">
+            <objects>
+                <viewController id="YVK-Mr-vOj" customClass="ViewController" customModule="MACTool" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="JMR-2h-cki">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="280"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lOF-LR-DVA">
+                                <rect key="frame" x="49" y="160" width="96" height="32"/>
+                                <buttonCell key="cell" type="push" title="FTP Data" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xsD-p4-AqY">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="gE7-gv-M5H" kind="modal" id="pUF-BZ-z49"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlb-dv-Ggg">
+                                <rect key="frame" x="267" y="160" width="115" height="32"/>
+                                <buttonCell key="cell" type="push" title="Source Data" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IqU-tO-XN6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="XfG-lQ-9wD" kind="modal" id="Nqm-bF-iOw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="mm1-RI-8Q9" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="508"/>
+        </scene>
+        <!--FTP Data Manager-->
+        <scene sceneID="aLW-VA-heS">
+            <objects>
+                <viewController title="FTP Data Manager" id="gE7-gv-M5H" sceneMemberID="viewController">
+                    <view key="view" id="HeP-8h-J4k">
+                        <rect key="frame" x="0.0" y="0.0" width="643" height="319"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Odw-Hh-tzv">
+                                <rect key="frame" x="18" y="273" width="121" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="上个版本配置文件：" id="lBu-aM-f7c">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4jB-fP-nry">
+                                <rect key="frame" x="139" y="268" width="389" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="PDT-iE-onr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05w-EA-YvB">
+                                <rect key="frame" x="18" y="235" width="147" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="最新数据压缩包文件夹：" id="Qsk-Sr-y3H">
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3QT-VX-3fg">
+                                <rect key="frame" x="161" y="230" width="367" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="WEz-0F-pSZ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="ucq-oG-DEW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-369.5" y="1014.5"/>
+        </scene>
+        <!--Source  Data Manager-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController storyboardIdentifier="MyStoryboardID" id="XfG-lQ-9wD" customClass="ViewController" customModule="MACTool" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Source  Data Manager" storyboardIdentifier="MyStoryboardID" id="XfG-lQ-9wD" customClass="SourceDataManagerViewController" customModule="MACTool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1107" height="372"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -724,7 +807,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PLL-4E-Wbr" userLabel="Input Folder:">
-                                <rect key="frame" x="30" y="335" width="85" height="17"/>
+                                <rect key="frame" x="107" y="335" width="85" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Input Folder: " id="F8U-b6-LQ1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -859,7 +942,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="detailClass" identifier="2" id="eDz-Jf-VeT">
-                                        <view key="view" id="maN-1S-vbW" customClass="KRDetailClassPathsView" customModule="MACTool" customModuleProvider="target">
+                                        <view key="view" ambiguous="YES" id="maN-1S-vbW" customClass="KRDetailClassPathsView" customModule="MACTool" customModuleProvider="target">
                                             <rect key="frame" x="10" y="33" width="690" height="211"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -890,7 +973,7 @@
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BNX-FY-aL7">
-                                                    <rect key="frame" x="17" y="90" width="354" height="44"/>
+                                                    <rect key="frame" x="17" y="40" width="354" height="44"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MainSort表调用&lt;SortData&gt;功能合成" drawsBackground="YES" id="iYq-W9-HzC">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -907,10 +990,27 @@
                                                         <action selector="compleSettingAction:" target="maN-1S-vbW" id="WN0-ho-FLR"/>
                                                     </connections>
                                                 </button>
+                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mKg-u2-Lgd">
+                                                    <rect key="frame" x="85" y="134" width="271" height="22"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="文件夹路径" drawsBackground="YES" id="fcg-qZ-4my">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-4r-KUT">
+                                                    <rect key="frame" x="15" y="135" width="66" height="20"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="DetailSpe:" id="AOh-4W-58y">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                             <connections>
                                                 <outlet property="compleSettingButton" destination="9PA-hj-Svi" id="IYA-r2-a5f"/>
                                                 <outlet property="detailPathTF" destination="pMv-yb-iX1" id="FbA-5A-wlT"/>
+                                                <outlet property="detailSpecialPathTF" destination="mKg-u2-Lgd" id="rzO-im-FUT"/>
                                             </connections>
                                         </view>
                                     </tabViewItem>
@@ -1140,7 +1240,7 @@
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="sortData" identifier="6" id="fwk-Jd-wC6">
-                                        <view key="view" ambiguous="YES" id="9Jp-PF-XhS" customClass="KRSortDataPathsView" customModule="MACTool" customModuleProvider="target">
+                                        <view key="view" id="9Jp-PF-XhS" customClass="KRSortDataPathsView" customModule="MACTool" customModuleProvider="target">
                                             <rect key="frame" x="10" y="33" width="690" height="211"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1205,18 +1305,17 @@ ZYComonAdd -&gt; MainSort</string>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="DataSelectTabView" destination="ifj-Xh-VJg" id="AyB-bl-mjw"/>
-                        <outlet property="dataSelectTabView" destination="ifj-Xh-VJg" id="Zis-Gf-CCr"/>
-                        <outlet property="dealtaskProgress" destination="CdF-ze-BQP" id="Le6-uY-uES"/>
-                        <outlet property="inputDBFolderTextField" destination="HiE-80-3Hl" id="FdO-BC-aBR"/>
-                        <outlet property="logTextView" destination="5ZC-XW-leS" id="XFt-VW-8II"/>
-                        <outlet property="runningButton" destination="Zg4-Ef-ntv" id="OkH-X7-Qex"/>
-                        <outlet property="setInputEndButton" destination="gC2-xB-zIO" id="j3Q-9J-ydh"/>
+                        <outlet property="dataSelectTabView" destination="ifj-Xh-VJg" id="WN8-R7-Xzy"/>
+                        <outlet property="dealtaskProgress" destination="CdF-ze-BQP" id="1oe-Zm-80o"/>
+                        <outlet property="inputDBFolderTextField" destination="HiE-80-3Hl" id="kik-7B-9i9"/>
+                        <outlet property="logTextView" destination="5ZC-XW-leS" id="Ylx-1R-pIz"/>
+                        <outlet property="runningButton" destination="Zg4-Ef-ntv" id="HK0-ET-SCd"/>
+                        <outlet property="setInputEndButton" destination="gC2-xB-zIO" id="l1w-aN-4N4"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="390.5" y="778"/>
+            <point key="canvasLocation" x="557.5" y="1095"/>
         </scene>
     </scenes>
 </document>

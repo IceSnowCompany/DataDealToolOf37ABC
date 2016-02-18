@@ -43,7 +43,8 @@ class ParseFilePathManager {
     /// 默认细类源文件
     lazy private var _detailClassPaths: DetailClassPaths = {
         let pathDBM = KRPathsDataSavaDB.pathsDataSavaDB
-        return DetailClassPaths(detail: pathDBM.getPath(.DetailClassPathsDetail))
+        return DetailClassPaths(detail: pathDBM.getPath(.DetailClassPathsDetail),
+            detailSpecial: pathDBM.getPath(.DetailClassPathsDetailSpecial))
     }()
     
     /// 默认细类源文件
@@ -54,6 +55,9 @@ class ParseFilePathManager {
         set {
             if newValue.detail != _detailClassPaths.detail {
                 locaPathManger.setPath(.DetailClassPathsDetail, newPath: newValue.detail)
+            }
+            if newValue.detailSpecial != _detailClassPaths.detailSpecial {
+                locaPathManger.setPath(.DetailClassPathsDetailSpecial, newPath: newValue.detailSpecial)
             }
             _detailClassPaths = newValue
         }
@@ -205,6 +209,7 @@ extension ParseFilePathManager {
      */
     struct DetailClassPaths {
         var detail: String
+        var detailSpecial: String
     }
     
     /**
@@ -244,6 +249,7 @@ enum KRPathsDataSavaDBKeyType: Int {
     case LocationPathsGov
     case LocationPathsPopSite
     case DetailClassPathsDetail
+    case DetailClassPathsDetailSpecial
     case HeaderPathsBase1
     case HeaderPathsBase2
     case AggreSearPathsBase
@@ -260,6 +266,7 @@ class KRPathsDataSavaDB {
     let KEYLocationPathsGov             = "LocationPathsGov"
     let KEYLocationPathsPopSite         = "LocationPathsPopSite"
     let KEYDetailClassPathsDetail       = "DetailClassPathsDetail"
+    let KEYDetailClassPathsDetailSpecial = "DetailClassPathsDetailSpecial"
     let KEYHeaderPathsBase1             = "HeaderPathsBase1"
     let KEYHeaderPathsBase2             = "HeaderPathsBase2"
     let KEYAggreSearPathsBase           = "AggreSearPathsBase"
@@ -269,6 +276,8 @@ class KRPathsDataSavaDB {
     let KEYInputDBFolderPath            = "InputDBFolderPath"
     
     let fileName = "ParseSettingPaths"
+    /// 默认路径
+    private var defaultKeyToPath: [String: String] = [:]
     
     private var dbManger: FMDBUseClass
     private let tableNameOfContent = "locaSetPaths"
@@ -294,6 +303,10 @@ class KRPathsDataSavaDB {
         
         filePath = suppPath + "/" + fileName + ".db"
         dbManger = FMDBUseClass(basePath: suppPath, dbName: fileName)
+        
+        // 默认路径
+        defaultKeyToPath = _defaultKeyToPath
+        
         // 不存在则创建默认
         if !NSFileManager.defaultManager().fileExistsAtPath(filePath) {
             defaultSetting()
@@ -313,19 +326,7 @@ class KRPathsDataSavaDB {
             "path varchar NOT NULL"
             ])
         
-        let keyToPaths = [
-            KEYLocationPathsDetail: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/首页本地数据手机版.csv",
-            KEYLocationPathsGov: "/Users/jingwang/Documents/SVN/37abc Data/手机版/省政府机构",
-            KEYLocationPathsPopSite: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/本地名站手机版.csv",
-            KEYDetailClassPathsDetail: "/Users/jingwang/Desktop/52/53",
-            KEYHeaderPathsBase1: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/1.首页默认头部手机版.csv",
-            KEYHeaderPathsBase2: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/3.苹果版53个分类里的头部.csv",
-            KEYAggreSearPathsBase: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/4.苹果版聚搜里的数据.csv",
-            KEYClassificationrPathsDetail: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/2.首页分类里的数据.csv",
-            KEYCommonAddPathsDetai: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/1.首页常用添加里的数据.csv",
-            KEYSortDataPathsSort: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/首页分类排序.csv",
-            KEYInputDBFolderPath: "/Users/jingwang/Desktop/52"
-        ]
+        let keyToPaths = defaultKeyToPath
         
         // 整合值
         var values: [String] = []
@@ -346,6 +347,23 @@ class KRPathsDataSavaDB {
         dbManger.closeDB() // 关闭数据库
         print("初始化" + (success ? "成功" : "失败"))
     }
+    /// 默认KeyToPath
+    private var _defaultKeyToPath: [String: String] {
+        return [
+            KEYLocationPathsDetail: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/首页本地数据手机版.csv",
+            KEYLocationPathsGov: "/Users/jingwang/Documents/SVN/37abc Data/手机版/省政府机构",
+            KEYLocationPathsPopSite: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/本地名站手机版.csv",
+            KEYDetailClassPathsDetail: "/Users/jingwang/Documents/SVN/37abc Data/手机版",
+            KEYDetailClassPathsDetailSpecial: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据",
+            KEYHeaderPathsBase1: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/1.首页默认头部手机版.csv",
+            KEYHeaderPathsBase2: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/3.苹果版53个分类里的头部.csv",
+            KEYAggreSearPathsBase: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/4.苹果版聚搜里的数据.csv",
+            KEYClassificationrPathsDetail: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/2.首页分类里的数据.csv",
+            KEYCommonAddPathsDetai: "/Users/jingwang/Documents/SVN/37abc Data/手机版/苹果数据/1.首页常用添加里的数据.csv",
+            KEYSortDataPathsSort: "/Users/jingwang/Documents/SVN/37abc Data/手机版/手机版通用数据/首页分类排序.csv",
+            KEYInputDBFolderPath: "/Users/jingwang/Desktop/52"
+        ]
+    }
     
      /**
      获取路径
@@ -356,7 +374,11 @@ class KRPathsDataSavaDB {
      */
     func getPath(pathType: KRPathsDataSavaDBKeyType) -> String {
         let identifier = getKeyIdentifier(pathType)
-        let path = queryPathFromDB(identifier)
+        var path = queryPathFromDB(identifier)
+        // 没有取默认
+        if path == nil {
+            path = defaultKeyToPath[identifier]!
+        }
         return path!
     }
     
@@ -395,6 +417,8 @@ private extension KRPathsDataSavaDB {
             key = KEYCommonAddPathsDetai
         case .DetailClassPathsDetail:
             key = KEYDetailClassPathsDetail
+        case .DetailClassPathsDetailSpecial: // V1.1
+            key = KEYDetailClassPathsDetailSpecial
         case .HeaderPathsBase1:
             key = KEYHeaderPathsBase1
         case .HeaderPathsBase2:

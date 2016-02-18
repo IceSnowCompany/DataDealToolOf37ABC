@@ -16,12 +16,16 @@ class KRDetailClassPathsView: NSView {
     
     @IBOutlet weak var detailPathTF: NSTextField!
     
+    @IBOutlet weak var detailSpecialPathTF: NSTextField!
+    
     @IBOutlet weak var compleSettingButton: NSButton!
     
     func defaultSetup() {
         detailPathTF.stringValue = pathsManager.detailClassPaths.detail
+        detailSpecialPathTF.stringValue = pathsManager.detailClassPaths.detailSpecial
         
         detailPathTF.delegate = self
+        detailSpecialPathTF.delegate = self
         
         compleSettingButton.hidden = true
     }
@@ -42,14 +46,25 @@ class KRDetailClassPathsView: NSView {
     }
     @IBAction func compleSettingAction(sender: NSButton) {
         let detailP = detailPathTF.stringValue
-        
+        let detailSpecialP = detailSpecialPathTF.stringValue
         var compleSet = true
+        
+        // Detail
         if !pathIsDir(detailP) {
             inputLogText("Detail 路径异常")
             compleSet = false
         } else {
             pathsManager.detailClassPaths.detail = detailP
         }
+        
+        // DetailSpecial
+        if !pathIsDir(detailSpecialP) {
+            inputLogText("DetailSpecial 路径异常")
+            compleSet = false
+        } else {
+            pathsManager.detailClassPaths.detailSpecial = detailSpecialP
+        }
+        
         if compleSet {
             compleSettingButton.hidden = true
             detailPathTF.window?.makeFirstResponder(nil)
